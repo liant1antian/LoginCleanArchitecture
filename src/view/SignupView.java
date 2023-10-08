@@ -52,9 +52,13 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(signUp)) {
-                            signupController.execute(usernameInputField.getText(),
-                                    String.valueOf(passwordInputField.getPassword()),
-                                    String.valueOf(repeatPasswordInputField.getPassword()));
+                            signupController.execute(signupViewModel.getState().getUsername(),
+                                    signupViewModel.getState().getPassword(),
+                                    signupViewModel.getState().getRepeatPassword());
+//                                    usernameInputField.getText(),
+//                                    String.valueOf(passwordInputField.getPassword()),
+//                                    String.valueOf(repeatPasswordInputField.getPassword())
+
                         }
                     }
                 }
@@ -87,7 +91,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                     @Override
                     public void keyTyped(KeyEvent e) {
                         SignupState currentState = signupViewModel.getState();
-                        currentState.setUsername(usernameInputField.getText() + e.getKeyChar());
+                        currentState.setPassword(passwordInputField.getPassword().toString() + e.getKeyChar());
                         signupViewModel.setState(currentState);
                     }
 
@@ -104,7 +108,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                     @Override
                     public void keyTyped(KeyEvent e) {
                         SignupState currentState = signupViewModel.getState();
-                        currentState.setUsername(usernameInputField.getText() + e.getKeyChar());
+                        currentState.setPassword(repeatPasswordInputField.getPassword().toString() + e.getKeyChar());
                         signupViewModel.setState(currentState);
                     }
 
